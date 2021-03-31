@@ -107,7 +107,7 @@ void Pixhawk::update()
         else if(ros::Time::now() - lastRequest > ros::Duration(5.0)) {
             lastRequest = ros::Time::now();
             offb_set_mode.request.custom_mode = "OFFBOARD";
-            if( modeClient.call(offb_set_mode) && offb_set_mode.response.success){
+            if( modeClient.call(offb_set_mode) && offb_set_mode.response.mode_sent){
                 ROS_INFO("Offboard enabled");
             }
         }
