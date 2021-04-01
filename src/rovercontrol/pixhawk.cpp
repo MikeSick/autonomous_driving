@@ -121,7 +121,7 @@ void Pixhawk::update()
         else if(ros::Time::now() - lastRequest > ros::Duration(5.0)) {
             lastRequest = ros::Time::now();
             arm_cmd.request.value = true; // should be true when in automatic mode
-            if( armingClient.call(arm_cmd) && arm_cmd.response.success) {
+            if( armingClient.call(arm_cmd) && arm_cmd.response.mode_sent) {
                     ROS_INFO("Vehicle armed");
             }
         }
