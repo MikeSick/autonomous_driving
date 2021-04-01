@@ -35,7 +35,7 @@ void Pixhawk::disable()
     std::cout << "Pixhawk_Wrapper State: Off" << std::endl;
 
     offb_set_mode.request.custom_mode = "MANUAL";
-    if( modeClient.call(offb_set_mode) && offb_set_mode.response.success){
+    if( modeClient.call(offb_set_mode) && offb_set_mode.response.mode_sent){
         ROS_INFO("Manual enabled");
     }
 
