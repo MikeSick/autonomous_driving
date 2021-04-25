@@ -35,7 +35,7 @@ void Pixhawk::disable()
     std::cout << "Pixhawk_Wrapper State: Off" << std::endl;
 
     offb_set_mode.request.custom_mode = "MANUAL";
-    if( modeClient.call(offb_set_mode) && offb_set_mode.response.mode_sent){
+    if( modeClient.call(offb_set_mode) && offb_set_mode.response.success){
         ROS_INFO("Manual enabled");
     }
 
@@ -107,7 +107,7 @@ void Pixhawk::update()
         else if(ros::Time::now() - lastRequest > ros::Duration(5.0)) {
             lastRequest = ros::Time::now();
             offb_set_mode.request.custom_mode = "OFFBOARD";
-            if( modeClient.call(offb_set_mode) && offb_set_mode.response.mode_sent){
+            if( modeClient.call(offb_set_mode) && offb_set_mode.response.success){
                 ROS_INFO("Offboard enabled");
             }
         }
@@ -121,7 +121,7 @@ void Pixhawk::update()
         else if(ros::Time::now() - lastRequest > ros::Duration(5.0)) {
             lastRequest = ros::Time::now();
             arm_cmd.request.value = true; // should be true when in automatic mode
-            if( armingClient.call(arm_cmd) && arm_cmd.response.mode_sent) {
+            if( armingClient.call(arm_cmd) && arm_cmd.response.success) {
                     ROS_INFO("Vehicle armed");
             }
         }
