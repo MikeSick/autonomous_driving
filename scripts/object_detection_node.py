@@ -116,7 +116,7 @@ class ObjectDetectionNode:
 			## Always steer to left
 			self.steering_pub.publish(-deviation)
                         ## Get Throttle
-			self.throttle_pub.publish(self.base_throttle * 0.9)
+			self.throttle_pub.publish(self.base_throttle * 0.1)
 		else:
 			## hard stop
 			self.throttle_pub.publish(-1.0)
